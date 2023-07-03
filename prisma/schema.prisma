@@ -1,0 +1,105 @@
+datasource db {
+  provider = "postgres"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["multiSchema","extendedWhereUnique","fullTextSearch"]
+}
+
+
+model UserRole {
+    id String @id @default(uuid())
+    roleName String @map("role_name") 
+
+    users User[]
+
+    @@map("user_role")
+    @@unique([roleName])
+}
+
+model User {
+    id String @id @default(uuid())
+    login String
+    password String 
+
+    userRole UserRole @relation(fields: [userRoleId], references: [id])
+    userRoleId String
+
+    stacks Stack[]
+
+    @@map("user")
+}
+
+// model Environment {
+//     id String @id @default(uuid())
+//     name String
+
+//     services Service[]
+//     @@map("environment")
+// }
+
+// model Image {
+//     id String @id @default(uuid())
+//     name String
+
+
+//     services Service[]
+
+//     @@map("image")
+// }
+
+
+// model Volume {
+//     id String @id @default(uuid())
+//     name String
+    
+//     service Service?
+
+//     @@map("volume")
+// }
+
+// model Network {
+//     id String @id @default(uuid())
+//     name String
+
+//     stack Stack?
+
+//     @@map("network")
+// }
+
+// model Service {
+//     id String  @id @default(uuid())
+//     name String
+
+//     serviceImage Image @relation(fields: [serviceImageId], references: [id])
+//     serviceImageId String
+
+//     environment Environment @relation(fields: [environmentId], references: [id])
+//     environmentId String
+
+//     volume Volume @relation(fields: [volumeId], references: [id])
+//     volumeId String @unique
+
+//     stack Stack @relation(fields: [stackId], references: [id])
+//     stackId String
+
+//     @@map("service")
+// }
+
+model Stack {
+    id String @id @default(uuid())
+    name String
+    stackId String
+
+    userId String
+    user User @relation(fields: [userId], references: [id])
+
+    // services Service[]
+
+    // network Network @relation(fields: [networkId], references: [id] )
+    // networkId String @unique
+
+    @@map("stack")
+}
