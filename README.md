@@ -12,6 +12,8 @@ SWARM_NETWORK_ID=
 APP_URL=
 ```
 
+Set the default swarm network ID variable in ```SWARM_NETWORK_ID```, ```APP_URL``` for the web app. ```DKCR_HOST``` and ```DCKR_PORT``` are the remote/local docker daemon host and port API respectively. If the host is remote, you might need to [secure](https://docs.docker.com/engine/security/protect-access/) the Docker API. Tipically, the socket is tcp://127.0.0.1:2375/ if you prefer to manage locally.
+
 You can install dependencies using
 
 ```sh
