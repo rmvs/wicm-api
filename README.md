@@ -1,6 +1,6 @@
 # WICM API
 
-This the cluster management and authentication + authorization API for the [WICM](https://github.com/rmvs/wicm) web app.
+Cluster management and authentication + authorization API for the [WICM](https://github.com/rmvs/wicm) web app.
 
 ```sh
 DKCR_HOST=
