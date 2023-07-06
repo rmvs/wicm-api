@@ -20,6 +20,12 @@ app.use(cookieParser());
 // app.use(middleware)
 // middleware
 
+app.use(function(err: any,req: any,res: any,next: any){
+    if(err.name === 'UnauthorizedError'){
+        res.status(403).end()
+    }
+})
+
 app.use("/api",expressjwt({ 
                 secret: process.env.SECRET!, 
                 algorithms: ["HS256"],
